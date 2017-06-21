@@ -1,0 +1,19 @@
+language: scala
+sudo: false
+scala:
+  - 2.11.11
+
+jdk:
+  - oraclejdk8
+
+sbt_args: "-J-Xmx2G"
+
+script:
+  - sbt +test
+  - find $HOME/.sbt -name "*.lock" | xargs rm
+  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
+
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
